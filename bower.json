@@ -1,0 +1,8 @@
+{
+  "name": "timeline",
+  "version": "0.0.1",
+  "dependencies": {
+    "Snap.svg": "0.3.0"
+  },
+  "private": true
+}
