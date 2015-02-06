@@ -1,0 +1,28 @@
+body {
+  min-width: 900px;
+}
+
+html {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+dl {
+  padding-left: 2em;
+  margin-left: 1em;
+  border-left: 1px solid;
+
+  dt:before {
+    content: '-';
+    position: absolute;
+    margin-left: -2.05em;
+  }
+}
+
+svg.timeline-visualization {
+  circle {
+    fill: white;
+    stroke: black;
+    stroke-width: 2;
+  }
+}
