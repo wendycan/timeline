@@ -1,6 +1,94 @@
 [
   {
-    "year": "1969",
-    "values": ["UNICS"]
+    "year": 1969,
+    "values": [
+      "UNICS"
+    ]
+  },
+  {
+    "year": 1971,
+    "values": [
+      "UNIX Time-Sharing System"
+    ]
+  },
+  {
+    "year": 1978,
+    "values": [
+      "BSD"
+    ]
+  },
+  {
+    "year": 1980,
+    "values": [
+      "XENIX OS"
+    ]
+  },
+  {
+    "year": 1981,
+    "values": [
+      "UNIX System III"
+    ]
+  },
+  {
+    "year": 1982,
+    "values": [
+      "SunOS"
+    ]
+  },
+  {
+    "year": 1983,
+    "values": [
+      "UNIX System V"
+    ]
+  },
+  {
+    "year": 1986,
+    "values": [
+      "GNU (Trix)",
+      "HP-UX"
+    ]
+  },
+  {
+    "year": 1987,
+    "values": [
+      "Minix"
+    ]
+  },
+  {
+    "year": 1989,
+    "values": [
+      "NeXTSTEP",
+      "SCO UNIX"
+    ]
+  },
+  {
+    "year": 1990,
+    "values": [
+      "Solaris"
+    ]
+  },
+  {
+    "year": 1991,
+    "values": [
+      "Linux"
+    ]
+  },
+  {
+    "year": 1993,
+    "values": [
+      "FreeBSD"
+    ]
+  },
+  {
+    "year": 1995,
+    "values": [
+      "OpenBSD"
+    ]
+  },
+  {
+    "year": 1999,
+    "values": [
+      "Mac OS X"
+    ]
   }
 ]

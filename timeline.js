@@ -1,40 +1,5 @@
 var SVG_NS = 'http://www.w3.org/2000/svg';
 
-function supportsSvg() {
-  return document.implementation &&
-    (
-      document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Shape', '1.0') ||
-      document.implementation.hasFeature('SVG', '1.0')
-    );
-}
-
-function getDataFromDefinitionList(definitionList) {
-  var children = definitionList.children;
-
-  var yearIndex = {};
-  var data = [];
-  var currentYear = null;
-
-  for (var childIndex = 0; childIndex < children.length; childIndex++) {
-    var child = children[childIndex];
-
-    if (child.nodeName == 'DT') {
-      currentYear = child.textContent;
-    } else if (child.nodeName == 'DD' && currentYear !== null) {
-      if (!yearIndex[currentYear]) {
-        yearIndex[currentYear] = data.length;
-        data.push({
-          year: +currentYear,
-          values: []
-        });
-      }
-
-      data[yearIndex[currentYear]].values.push(child.textContent);
-    }
-  }
-  return data;
-}
-
 function createSvgElement() {
   var element = document.createElementNS(SVG_NS, 'svg');
   element.setAttribute('width', '100%');
@@ -91,15 +56,18 @@ function drawTimeline(svgElement, data) {
   });
 }
 
-if (supportsSvg()) {
-  var timeline = document.querySelector('.timeline');
+var timeline = document.querySelector('#timeline');
+var xmlhttp;
+xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", "/data.json", true);
+xmlhttp.send();
+xmlhttp.onreadystatechange = function() {
+  if (xmlhttp.readyState == 4) {
+    data = JSON.parse(xmlhttp.responseText);
+    console.log(data);
+    var svgElement = createSvgElement();
+    timeline.appendChild(svgElement, timeline);
 
-  timeline.style.display = 'none';
-
-  var data = getDataFromDefinitionList(timeline);
-
-  var svgElement = createSvgElement();
-  timeline.parentNode.insertBefore(svgElement, timeline);
-
-  drawTimeline(svgElement, data);
-}
+    drawTimeline(svgElement, data);
+  }
+};
