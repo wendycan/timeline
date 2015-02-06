@@ -7,6 +7,23 @@
   <div id="timeline">
   </div>
 <script src="/bower_components/Snap.svg/dist/snap.svg.js" charset="utf-8" async></script>
-<script src="/timeline.js" charset="utf-8" async></script>
+<script src="/build/timeline.js" charset="utf-8" async></script>
+<script>
+  window.onload = function () {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/data.json", true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function(){
+      if (xmlhttp.readyState == 4) {
+        data = JSON.parse(xmlhttp.responseText);
+        timeline = new timeline({
+          element: '#timeline',
+          data: data
+        });
+        timeline.render();
+      }
+    }
+  };
+</script>
 </body>
 </html>
