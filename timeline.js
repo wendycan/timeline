@@ -9,16 +9,14 @@ function createSvgElement() {
   // you should set a viewBox so that when the page scales
   // the whole timeline is still viewable.
 
-  element.classList.add('timeline-visualization');
+  element.classList.add('timeline');
 
   return element;
 }
 
 function drawTimeline(svgElement, data) {
   var paper = Snap(svgElement);
-
   var canvasSize = parseFloat(getComputedStyle(paper.node)["width"]);
-
   var start = +data[0].year;
   var end = +data[data.length - 1].year;
 
@@ -29,27 +27,30 @@ function drawTimeline(svgElement, data) {
   var range = end - start;
 
   paper.line(0, 200, canvasSize, 200).attr({
-    'stroke': 'black',
+    'stroke': 'green',
     'stroke-width': 2
   });
 
   data.forEach(function(datum) {
     var x = canvasSize * (datum.year - start) / range;
 
-    paper.circle(x, 200, 6);
+    paper.circle(x, 200, 6).attr({
+      'fill': '#070'
+    });
 
     paper.text(x, 230, datum.year).attr({
-      'text-anchor': 'middle'
+      'text-anchor': 'middle',
+      'stroke': '#777'
     });
 
     var averageIndex = (datum.values.length - 1) / 2;
     var xOffsetSize = 24;
     datum.values.forEach(function(value, index) {
       var offset = (index - averageIndex) * xOffsetSize;
-
       paper.text(x + offset, 180, value)
         .attr({
-          'text-anchor': 'start'
+          'text-anchor': 'start',
+          'stroke': '#777'
         })
         .transform('r -45 ' + (x + offset) + ' 180');
     });
@@ -64,10 +65,8 @@ xmlhttp.send();
 xmlhttp.onreadystatechange = function() {
   if (xmlhttp.readyState == 4) {
     data = JSON.parse(xmlhttp.responseText);
-    console.log(data);
     var svgElement = createSvgElement();
     timeline.appendChild(svgElement, timeline);
-
     drawTimeline(svgElement, data);
   }
 };
